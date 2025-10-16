@@ -1,7 +1,7 @@
 @startuml
 title Diagrama de Actividades - Gestión de Inscripciones (CU-GE-007)
 
-|#skyblue|Coordinadora de EC|
+|#skyblue|Coordinación|
 start
 :Accede a "Gestión de Solicitudes de Inscripción";
 
@@ -9,50 +9,30 @@ start
 :Muestra lista de solicitudes con estado
 "Pendiente de Revisión";
 
-|#skyblue|Coordinadora de EC|
+|#skyblue|Coordinación|
 :Selecciona una solicitud para revisar;
 
 |#whitesmoke|Módulo administrativo|
 :Muestra detalles de la solicitud
 (datos del usuario, documentos, etc.);
 
-|#skyblue|Coordinadora de EC|
-:Revisa la información;
-partition "Decisión sobre la Solicitud" {
-  if (¿Aprobar solicitud?) then (Sí)
-    :Hace clic en "Aprobar";
-    |#whitesmoke|Módulo administrativo|
-    if (¿Hay cupo disponible en el evento?) then (Sí)
-      :Actualiza estado a "Aprobada"
-      (o "Pendiente de Pago");
-      :Registra al usuario como participante;
-      :Envía email de notificación al usuario
-      con los siguientes pasos (ej. pago);
-    else (No)
-      :Muestra error: "El evento no tiene cupo";
-    endif
-  elseif (¿Rechazar solicitud?) then (Sí)
-    :Hace clic en "Rechazar";
-    |#whitesmoke|Módulo administrativo|
-    :Solicita un motivo de rechazo;
-    |#skyblue|Coordinadora de EC|
-    :Ingresa el motivo;
-    |#whitesmoke|Módulo administrativo|
-    :Actualiza estado a "Rechazada";
-    :Envía email de notificación al usuario
-    incluyendo el motivo;
-  else (Solicitar más información)
-    :Hace clic en "Solicitar Más Información";
-    |#whitesmoke|Módulo administrativo|
-    :Solicita especificar qué información se requiere;
-    |#skyblue|Coordinadora de EC|
-    :Ingresa el detalle de la información;
-    |#whitesmoke|Módulo administrativo|
-    :Actualiza estado a "Información Requerida";
-    :Envía email de notificación al usuario
-    con la solicitud de información;
-  endif
-}
-:Vuelve a la lista de solicitudes pendientes;
-stop
+|#skyblue|Coordinación|
+:Revisa la información y documentos;
+:Evalúa si cumple con los criterios;
+
+if (¿Decisión sobre la solicitud?) then (Aprobar)
+  :Procede a aprobar la solicitud;
+  note right: Ver diagrama CU-GE-007A
+  stop
+elseif (Rechazar/Solicitar información) then 
+  :Procede a rechazar o solicitar
+  más información;
+  note right: Ver diagrama CU-GE-007B
+  stop
+else (Posponer decisión)
+  :Deja la solicitud pendiente
+  para revisión posterior;
+  :Vuelve a la lista de solicitudes;
+  stop
+endif
 @enduml

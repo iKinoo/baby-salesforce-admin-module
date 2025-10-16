@@ -1,81 +1,49 @@
 @startuml
 title Diagrama de Actividades - Validación de Pagos Manuales (CU-GE-008)
 
-|#skyblue|Coordinadora de EC|
+|#skyblue|Coordinación|
 start
-:Accede a la sección de "Validaciones";
-:Selecciona "Validar Pagos Manuales";
+:Accede a la sección de "Gestión de Pagos";
+:Selecciona "Pagos Pendientes de Verificación";
 
 |#whitesmoke|Módulo administrativo|
 :Muestra lista de inscripciones con estado
 "Pendiente de Verificación de Pago";
 
-|#skyblue|Coordinadora de EC|
-:Selecciona una inscripción;
-:Deriva a Contabilidad para validación;
-
-|#lightgreen|Contabilidad|
-:Revisa el comprobante de pago;
-:Identifica el método de pago;
-note right
-  Métodos disponibles:
-  - Depósito en ventanilla bancaria
-  - Transferencia electrónica bancaria
-  - Pago en efectivo en caja (<$2,000 MXN)
-  - Tarjeta crédito/débito (Visa/MasterCard)
-  - Tarjeta MSI (≥$3,000 MXN, Visa/MasterCard)
-  - Pago mediante enlace
-end note
-
-if (¿Método de pago?) then (Depósito bancario)
-  :Verifica comprobante de depósito en PDF
-  recibido en correo@institucion.mx;
-elseif (Transferencia electrónica) then 
-  :Valida comprobante en PDF recibido
-  en correo@institucion.mx y
-  confirma en plataforma bancaria;
-elseif (Efectivo en caja) then
-  :Confirma recibo físico y monto <$2,000;
-elseif (Tarjeta crédito/débito) then
-  :Verifica transacción Visa/MasterCard;
-elseif (Tarjeta MSI) then
-  :Confirma pago ≥$3,000 y Visa/MasterCard;
-else (Pago mediante enlace)
-  |#orange|Equipo de ventas|
-  :Solicita enlace de pago;
-  |#whitesmoke|Módulo administrativo|
-  :Registra solicitud de enlace;
-  :Deriva al Departamento de Tecnologías;
-  |#pink|Dpto. Tecnologías|
-  :Genera enlace de pago;
-  |#whitesmoke|Módulo administrativo|
-  :Recibe enlace generado;
-  :Notifica al Equipo de ventas;
-  |#orange|Equipo de ventas|
-  :Recibe enlace en ≤1 día hábil;
-  :Remite enlace al participante;
-  |#whitesmoke|Módulo administrativo|
-  :Registra envío de enlace;
-  |#lightgreen|Contabilidad|
-  :Verifica pago completado
-  mediante enlace;
-endif
+|#skyblue|Coordinación|
+:Selecciona una inscripción para revisar;
+:Consulta los detalles del participante
+y el monto esperado;
+:Compara la información del sistema
+con el comprobante de pago externo;
 
 if (¿El pago se confirma?) then (Sí)
+  |#skyblue|Coordinación|
   :Hace clic en "Confirmar Pago";
   |#whitesmoke|Módulo administrativo|
-  :Actualiza estado a "Pagada";
-  :Envía email de confirmación
-  de inscripción al participante;
+  :Actualiza estado de inscripción a "Pagada";
+  :Envía notificación por email al participante
+  confirmando la recepción del pago;
+  :Muestra confirmación a la Coordinación;
 else (No)
+  |#skyblue|Coordinación|
   :Hace clic en "Rechazar Pago";
   |#whitesmoke|Módulo administrativo|
-  :Solicita un motivo (ej. monto incorrecto);
-  |#lightgreen|Contabilidad|
-  :Ingresa el motivo;
+  :Solicita motivo del rechazo;
+  |#skyblue|Coordinación|
+  :Ingresa el motivo y confirma;
   |#whitesmoke|Módulo administrativo|
   :Actualiza estado a "Pago Rechazado";
-  :Notifica al participante sobre el problema;
+  :Notifica al participante sobre el problema
+  y las acciones a seguir;
 endif
-stop
+
+|#skyblue|Coordinación|
+if (¿Desea validar otro pago?) then (Sí)
+  :Regresa al inicio para seleccionar
+  otra inscripción pendiente;
+  stop
+else (No)
+  stop
+endif
 @enduml

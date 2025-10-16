@@ -1,7 +1,7 @@
 @startuml
 title Diagrama de Actividades - Generación de Reportes (CU-GE-006)
 
-|#skyblue|Coordinadora de EC|
+|#skyblue|Coordinación|
 start
 :Accede a la sección "Reportes y Constancias";
 :Selecciona "Generar Reporte de Eventos";
@@ -10,7 +10,7 @@ start
 :Presenta lista de reportes disponibles
 (ej. Lista de participantes, Ingresos);
 
-|#skyblue|Coordinadora de EC|
+|#skyblue|Coordinación|
 :Selecciona un tipo de reporte;
 :Define los parámetros (ej. evento, fechas);
 :Inicia la generación del reporte;
@@ -20,7 +20,7 @@ start
 :Genera el archivo del reporte (PDF, Excel);
 :Ofrece opción para descargar el archivo;
 
-|#skyblue|Coordinadora de EC|
+|#skyblue|Coordinación|
 :Descarga el reporte;
 stop
 @enduml

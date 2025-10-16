@@ -8,7 +8,7 @@ start
 :Elige "Modificar";
 
 |#whitesmoke|Módulo administrativo|
-:Permite editar el nombre;
+:Presenta formulario para editar el nombre;
 
 |#skyblue|Coordinadora de EC|
 :Edita el nombre y guarda;

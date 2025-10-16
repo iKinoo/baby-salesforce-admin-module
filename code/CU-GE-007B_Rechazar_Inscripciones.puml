@@ -1,0 +1,59 @@
+@startuml
+title Diagrama de Actividades - Rechazar Solicitudes de Inscripción (CU-GE-007B)
+
+|#skyblue|Coordinación|
+start
+:Accede a "Gestión de Solicitudes de Inscripción";
+
+|#whitesmoke|Módulo administrativo|
+:Muestra lista de solicitudes con estado
+"Pendiente de Revisión";
+
+|#skyblue|Coordinación|
+:Selecciona una solicitud para revisar;
+
+|#whitesmoke|Módulo administrativo|
+:Muestra detalles de la solicitud
+(datos del usuario, documentos, etc.);
+
+|#skyblue|Coordinación|
+:Revisa la información;
+:Identifica problemas o incumplimientos;
+if (¿Tipo de problema?) then (Información incompleta/incorrecta)
+  :Decide solicitar más información;
+  :Hace clic en "Solicitar Más Información";
+  |#whitesmoke|Módulo administrativo|
+  :Solicita especificar qué información se requiere;
+  |#skyblue|Coordinación|
+  :Ingresa el detalle de la información requerida
+  (ej. "Falta certificado de estudios",
+  "Documento ilegible", etc.);
+  |#whitesmoke|Módulo administrativo|
+  :Actualiza estado a "Información Requerida";
+  :Envía email de notificación al usuario
+  especificando la información faltante
+  y cómo proporcionarla;
+  :Muestra confirmación a la Coordinación;
+else (No cumple requisitos)
+  :Decide rechazar definitivamente;
+  :Hace clic en "Rechazar";
+  |#whitesmoke|Módulo administrativo|
+  :Solicita motivo del rechazo;
+  |#skyblue|Coordinación|
+  :Ingresa motivo específico del rechazo
+  (ej. "No cumple requisitos académicos",
+  "Documentación no válida", etc.);
+  |#whitesmoke|Módulo administrativo|
+  :Actualiza estado a "Rechazada";
+  :Envía email de notificación al usuario
+  incluyendo el motivo específico del rechazo;
+  :Muestra confirmación a la Coordinación;
+endif
+
+|#skyblue|Coordinación|
+if (¿Desea procesar otra solicitud?) then (Sí)
+  :Vuelve a la lista de solicitudes pendientes;
+else (No)
+  stop
+endif
+@enduml

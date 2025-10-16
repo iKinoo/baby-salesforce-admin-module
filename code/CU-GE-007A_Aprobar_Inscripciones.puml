@@ -1,0 +1,46 @@
+@startuml
+title Diagrama de Actividades - Aprobar Solicitudes de Inscripción (CU-GE-007A)
+
+|#skyblue|Coordinación|
+start
+:Accede a "Gestión de Solicitudes de Inscripción";
+
+|#whitesmoke|Módulo administrativo|
+:Muestra lista de solicitudes con estado
+"Pendiente de Revisión";
+
+|#skyblue|Coordinación|
+:Selecciona una solicitud para revisar;
+
+|#whitesmoke|Módulo administrativo|
+:Muestra detalles de la solicitud
+(datos del usuario, documentos, etc.);
+
+|#skyblue|Coordinación|
+:Revisa la información;
+:Decide aprobar la solicitud;
+:Hace clic en "Aprobar";
+
+|#whitesmoke|Módulo administrativo|
+if (¿Hay cupo disponible en el evento?) then (Sí)
+  :Verifica cupo disponible;
+  :Actualiza estado a "Aprobada"
+  (o "Pendiente de Pago");
+  :Registra al usuario como participante;
+  :Actualiza contador de participantes;
+  :Envía email de notificación al usuario
+  con confirmación de aprobación y
+  siguientes pasos (ej. instrucciones de pago);
+  :Muestra confirmación a la Coordinación;
+else (No)
+  :Muestra error: "El evento no tiene cupo disponible.
+  No se puede aprobar la solicitud";
+endif
+
+|#skyblue|Coordinación|
+if (¿Desea procesar otra solicitud?) then (Sí)
+  :Vuelve a la lista de solicitudes pendientes;
+else (No)
+  stop
+endif
+@enduml
