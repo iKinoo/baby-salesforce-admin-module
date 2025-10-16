@@ -1,0 +1,37 @@
+@startuml
+title Proceso de Facturación
+
+|#lightgreen|Participante|
+start
+:Durante la inscripción, solicita factura;
+:Proporciona su Constancia de Situación Fiscal (CSF);
+
+|#lightblue|Equipo de Ventas|
+:Recibe la solicitud de factura y la CSF;
+:Registra en el sistema que el
+participante requiere factura;
+
+|#lightgreen|Participante|
+:Realiza el pago completo del evento;
+
+|#whitesmoke|Módulo administrativo|
+:Detecta la confirmación del pago;
+if (¿Pago se realizó en o antes del día 25 del mes?) then (Sí)
+  :Procede a generar la factura
+  correspondiente al mes en curso;
+else (No, se realizó después del día 25)
+  :Agenda la generación de la factura
+  para el mes siguiente;
+  :Asegura que la factura incluya un
+  **complemento de pago** que refleje
+  la fecha real de la transacción;
+endif
+:Genera el archivo de la factura;
+:Envía la factura por correo electrónico
+al participante (en un plazo de 3-4 días hábiles);
+:Actualiza el estado del pago a "Facturado";
+
+|#lightgreen|Participante|
+:Recibe la factura en su correo electrónico;
+stop
+@enduml

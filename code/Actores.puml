@@ -1,0 +1,46 @@
+@startuml System Actors
+
+
+
+left to right direction
+' Declaración de actores principales
+actor Usuario
+actor Staff
+actor Coordinacion
+actor Capacitador
+actor "Público General" as publico_general
+actor "Personal\nde Contabilidad" as personal_contabilidad
+
+' Declaración de actores que heredan de "Staff" con alias consistentes
+actor "Promotor de Ventas" as promotor_ventas
+actor "Responsable de Ventas" as responsable_ventas
+actor "Coordinadora de EC" as coordinadora_ec
+actor "Coordinadora de Vinculación" as coordinadora_vinculacion
+
+
+actor "Equipo de Ventas" as equipo_ventas
+
+' Declaración de actores que heredan de "público general"
+actor "Interesado\n(lead/opportunity)" as Interesado
+actor Participante
+actor MetaAds as "Meta Ads"
+
+' Relaciones de herencia
+Usuario <|-- Staff
+Usuario <|-- Capacitador
+Usuario <|-- publico_general
+Usuario <|-- personal_contabilidad
+
+Staff <|-- Coordinacion
+Staff <|-- equipo_ventas
+
+equipo_ventas <|-- promotor_ventas
+equipo_ventas <|-- responsable_ventas
+
+Coordinacion <|-- coordinadora_ec
+Coordinacion <|-- coordinadora_vinculacion
+
+publico_general <|-- Interesado
+publico_general <|-- Participante
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+title A3: Diagrama de Actividades - Gestión de Usuarios
+
+|#skyblue|Coordinación|
+start
+:Accede al "Módulo de Usuarios";
+
+|#whitesmoke|Módulo administrativo|
+:Muestra una lista paginada de todos los usuarios
+(Público General, Capacitadores, etc.);
+
+|#skyblue|Coordinación|
+:Visualiza la lista;
+if (Desea refinar la búsqueda?) then (sí)
+  :Aplica filtros (por rol, estado)
+  o usa la barra de búsqueda (nombre, email);
+  |#whitesmoke|Módulo administrativo|
+  :Actualiza la lista según los criterios;
+  |#skyblue|Coordinación|
+  :Visualiza la lista filtrada;
+endif
+:Selecciona un usuario para ver su perfil detallado;
+|#whitesmoke|Módulo administrativo|
+:Muestra el perfil del usuario seleccionado;
+|#skyblue|Coordinación|
+stop
+@enduml

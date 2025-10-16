@@ -1,0 +1,26 @@
+@startuml
+title A7.1: Diagrama de Actividades - Generación de Reportes
+
+|#skyblue|Coordinación|
+start
+:Accede a la sección "Reportes y Constancias";
+:Selecciona "Generar Reporte de Eventos";
+
+|#whitesmoke|Módulo administrativo|
+:Presenta lista de reportes disponibles
+(ej. Lista de participantes, Ingresos);
+
+|#skyblue|Coordinación|
+:Selecciona un tipo de reporte;
+:Define los parámetros (ej. evento, fechas);
+:Inicia la generación del reporte;
+
+|#whitesmoke|Módulo administrativo|
+:Procesa la información de la BD;
+:Genera el archivo del reporte (PDF, Excel);
+:Ofrece opción para descargar el archivo;
+
+|#skyblue|Coordinación|
+:Descarga el reporte;
+stop
+@enduml
