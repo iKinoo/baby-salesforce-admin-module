@@ -1,0 +1,34 @@
+@startuml
+title Diagrama de Actividades - Consultar Eventos (CU-GE-002)
+
+|#skyblue|Coordinación|
+start
+:Accede a "Gestión de Eventos";
+:Selecciona "Consultar eventos" o "Ver eventos";
+
+|#whitesmoke|Módulo administrativo|
+if (¿Hay eventos registrados?) then (sí)
+  :Muestra una lista paginada de todos los eventos
+  (nombre, fechas, estado, modalidad);
+else (no)
+  :Muestra mensaje "No hay eventos registrados";
+  stop
+endif
+
+|#skyblue|Coordinación|
+:Visualiza la lista de eventos;
+if (¿Desea refinar la búsqueda?) then (sí)
+  :Aplica filtros (por fecha, modalidad, estado)
+  o usa la barra de búsqueda (nombre del evento);
+  |#whitesmoke|Módulo administrativo|
+  if (¿Se encontraron resultados?) then (sí)
+    :Actualiza la lista según los criterios;
+  else (no)
+    :Muestra mensaje "No se encontraron resultados
+    para la búsqueda/filtro aplicado";
+  endif
+  |#skyblue|Coordinación|
+  :Visualiza la lista filtrada;
+endif
+stop
+@enduml

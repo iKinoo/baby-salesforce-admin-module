@@ -17,7 +17,8 @@ start
 (datos del usuario, documentos, etc.);
 
 |#skyblue|Coordinación|
-:Revisa la información;
+:Ejecuta proceso de Validación de Documentos;
+note right: ver CU-MU-002
 :Decide aprobar la solicitud;
 :Hace clic en "Aprobar";
 
@@ -28,6 +29,8 @@ if (¿Hay cupo disponible en el evento?) then (Sí)
   (o "Pendiente de Pago");
   :Registra al usuario como participante;
   :Actualiza contador de participantes;
+  :Ejecuta proceso de Validación de Pagos;
+  note right: ver CU-GE-008
   :Envía email de notificación al usuario
   con confirmación de aprobación y
   siguientes pasos (ej. instrucciones de pago);

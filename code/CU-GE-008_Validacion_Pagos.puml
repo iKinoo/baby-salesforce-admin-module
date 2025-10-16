@@ -12,12 +12,14 @@ start
 
 |#skyblue|Coordinación|
 :Selecciona una inscripción para revisar;
+
+|#whitesmoke|Módulo administrativo|
 :Consulta los detalles del participante
 y el monto esperado;
-:Compara la información del sistema
-con el comprobante de pago externo;
+:Delega validación de pago a contabilidad;
+:Contabilidad revisa el comprobante de pago;
 
-if (¿El pago se confirma?) then (Sí)
+if (¿El pago se confirma?) then (Confirmado)
   |#skyblue|Coordinación|
   :Hace clic en "Confirmar Pago";
   |#whitesmoke|Módulo administrativo|
@@ -25,7 +27,7 @@ if (¿El pago se confirma?) then (Sí)
   :Envía notificación por email al participante
   confirmando la recepción del pago;
   :Muestra confirmación a la Coordinación;
-else (No)
+else (Rechazado)
   |#skyblue|Coordinación|
   :Hace clic en "Rechazar Pago";
   |#whitesmoke|Módulo administrativo|
