@@ -1,0 +1,33 @@
+@startuml
+title Diagrama de Actividades - Generación de Constancias (CU-GE-005)
+
+|#skyblue|Coordinadora de EC|
+start
+:Accede a la sección "Reportes y Constancias";
+:Selecciona "Generar Constancias de Participación";
+
+|#whitesmoke|Módulo administrativo|
+:Solicita seleccionar un evento;
+
+|#skyblue|Coordinadora de EC|
+:Selecciona el evento deseado;
+
+|#whitesmoke|Módulo administrativo|
+:Muestra lista de participantes elegibles
+(que cumplieron los requisitos);
+
+|#skyblue|Coordinadora de EC|
+:Selecciona a los participantes
+(individualmente o "todos");
+:Inicia la generación de constancias;
+
+|#whitesmoke|Módulo administrativo|
+:Genera los archivos PDF de las constancias
+usando una plantilla;
+:Ofrece opciones para descargar o
+enviar por correo a los participantes;
+
+|#skyblue|Coordinadora de EC|
+:Descarga las constancias o confirma el envío;
+stop
+@enduml

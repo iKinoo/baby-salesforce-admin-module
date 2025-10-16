@@ -1,0 +1,34 @@
+@startuml
+title Diagrama de Actividades - Validación de Documentos (CU-MU-002)
+
+|#skyblue|Coordinadora de EC|
+start
+:Accede a la sección de "Validaciones";
+:Selecciona "Validar Documentación de Usuario";
+
+|#whitesmoke|Módulo administrativo|
+:Muestra lista de usuarios con
+documentos pendientes de validación;
+
+|#skyblue|Coordinadora de EC|
+:Selecciona un documento para revisar;
+
+|#whitesmoke|Módulo administrativo|
+:Muestra el documento cargado;
+
+|#skyblue|Coordinadora de EC|
+:Revisa el documento;
+if (¿Documento es válido?) then (Sí)
+  :Marca el documento como "Validado";
+  |#whitesmoke|Módulo administrativo|
+  :Actualiza el estado del documento;
+  :Notifica (opcional) al usuario;
+else (No)
+  :Marca el documento como "No Válido";
+  |#whitesmoke|Módulo administrativo|
+  :Actualiza el estado del documento;
+  :Notifica al usuario solicitando
+  que cargue un nuevo documento;
+endif
+stop
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+title Diagrama de Actividades - Modificar Información de Capacitador (CU-MU-005)
+
+|#skyblue|Coordinadora de EC|
+start
+:Accede a "Gestión de Capacitadores";
+:Selecciona un capacitador y elige "Editar";
+
+|#whitesmoke|Módulo administrativo|
+:Muestra formulario con datos actuales;
+
+|#skyblue|Coordinadora de EC|
+:Actualiza la información y guarda;
+
+|#whitesmoke|Módulo administrativo|
+:Guarda los cambios y confirma;
+stop
+@enduml
