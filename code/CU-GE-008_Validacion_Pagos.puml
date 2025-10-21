@@ -17,7 +17,7 @@ start
 :Consulta los detalles del participante
 y el monto esperado;
 :Delega validación de pago a contabilidad;
-:Contabilidad revisa el comprobante de pago;
+:Recibe respuesta de Contabilidad sobre el comprobante de pago;
 
 if (¿El pago se confirma?) then (Confirmado)
   |#skyblue|Coordinación|

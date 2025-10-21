@@ -17,9 +17,13 @@ start
 (datos del usuario, documentos, etc.);
 
 |#skyblue|Coordinación|
-:Revisa la información;
+:Ejecuta proceso de Validación de Documentos;
+note right: ver CU-MU-002
+:Ejecuta proceso de Validación de Pagos;
+note right: ver CU-GE-008
 :Identifica problemas o incumplimientos;
 if (¿Tipo de problema?) then (Información incompleta/incorrecta)
+  |#skyblue|Coordinación|
   :Decide solicitar más información;
   :Hace clic en "Solicitar Más Información";
   |#whitesmoke|Módulo administrativo|
@@ -35,6 +39,7 @@ if (¿Tipo de problema?) then (Información incompleta/incorrecta)
   y cómo proporcionarla;
   :Muestra confirmación a la Coordinación;
 else (No cumple requisitos)
+  |#skyblue|Coordinación|
   :Decide rechazar definitivamente;
   :Hace clic en "Rechazar";
   |#whitesmoke|Módulo administrativo|
