@@ -1,39 +1,38 @@
-@startuml
+@startuml CU-GE-008_Validacion_Pagos
 title Diagrama de Actividades - Validación de Pagos Manuales (CU-GE-008)
 
 |#skyblue|Coordinación|
 start
-:Accede a la sección de "Gestión de Pagos";
-:Selecciona "Pagos Pendientes de Verificación";
+:Inicia gestión de pagos;
+:Solicita pagos pendientes de verificación;
 
 |#whitesmoke|Módulo administrativo|
-:Muestra lista de inscripciones con estado
+:Provee inscripciones con estado
 "Pendiente de Verificación de Pago";
 
 |#skyblue|Coordinación|
-:Selecciona una inscripción para revisar;
+:Determina la inscripción a revisar;
 
 |#whitesmoke|Módulo administrativo|
-:Consulta los detalles del participante
+:Obtiene datos del participante
 y el monto esperado;
-:Delega validación de pago a contabilidad;
-:Recibe respuesta de Contabilidad sobre el comprobante de pago;
+:Delega validación de pago a Contabilidad;
+:Recibe resultado de Contabilidad sobre el comprobante de pago;
 
 if (¿El pago se confirma?) then (Confirmado)
   |#skyblue|Coordinación|
-  :Hace clic en "Confirmar Pago";
+  :Confirma validación de pago;
   |#whitesmoke|Módulo administrativo|
-  :Actualiza estado de inscripción a "Pagada";
-  :Envía notificación por email al participante
-  confirmando la recepción del pago;
-  :Muestra confirmación a la Coordinación;
+  :Actualiza estado de la inscripción a "Pagada";
+  :Notifica al participante la confirmación del pago;
+  :Informa confirmación a la Coordinación;
 else (Rechazado)
   |#skyblue|Coordinación|
-  :Hace clic en "Rechazar Pago";
+  :Registra rechazo del pago;
   |#whitesmoke|Módulo administrativo|
-  :Solicita motivo del rechazo;
+  :Requiere motivo del rechazo;
   |#skyblue|Coordinación|
-  :Ingresa el motivo y confirma;
+  :Proporciona motivo y confirma decisión;
   |#whitesmoke|Módulo administrativo|
   :Actualiza estado a "Pago Rechazado";
   :Notifica al participante sobre el problema
@@ -41,9 +40,8 @@ else (Rechazado)
 endif
 
 |#skyblue|Coordinación|
-if (¿Desea validar otro pago?) then (Sí)
-  :Regresa al inicio para seleccionar
-  otra inscripción pendiente;
+if (¿Continuar con otra validación?) then (Sí)
+  :Reinicia ciclo para otra inscripción pendiente;
   stop
 else (No)
   stop

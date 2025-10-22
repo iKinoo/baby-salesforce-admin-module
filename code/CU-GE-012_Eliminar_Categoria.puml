@@ -1,24 +1,24 @@
-@startuml
+@startuml CU-GE-012_Eliminar_Categoria
 title Diagrama de Actividades - Eliminar Categoría (CU-GE-012)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a "Gestión de Categorías";
-:Selecciona una categoría de la lista;
-:Elige "Eliminar";
+:Inicia gestión de categorías;
+:Indica categoría objetivo;
+:Solicita eliminación;
 
 |#whitesmoke|Módulo administrativo|
-:Solicita confirmación;
+:Requiere confirmación;
 
 |#skyblue|Coordinadora de EC|
-:Confirma la eliminación;
+:Confirma la decisión;
 
 |#whitesmoke|Módulo administrativo|
-if (Categoría está en uso por algún evento?) then (sí)
-  :Muestra error: "La categoría está en uso";
+if (¿Categoría está en uso?) then (sí)
+  :Informa que la categoría está en uso;
 else (no)
-  :Elimina la categoría;
-  :Muestra mensaje de confirmación;
+  :Registra eliminación de la categoría;
+  :Informa confirmación;
 endif
 stop
 @enduml

@@ -1,28 +1,26 @@
-@startuml
+@startuml CU-GE-010_Consultar_Categorias
 title Diagrama de Actividades - Consultar Categorías de Evento/Capacitación (CU-GE-010)
 
 |#skyblue|Coordinación|
 start
-:Accede a la sección "Gestión de Categorías";
+:Inicia gestión de categorías;
 
 |#whitesmoke|Módulo administrativo|
 if (¿Hay categorías registradas?) then (sí)
-  :Muestra una lista de todas las categorías
-  de eventos/capacitaciones existentes;
+  :Provee lista de categorías disponibles;
 else (no)
-  :Muestra mensaje "No hay categorías registradas";
+  :Informa que no hay categorías registradas;
   stop
 endif
 
 |#skyblue|Coordinación|
-:Visualiza la lista de categorías;
+:Analiza la lista de categorías;
 if (¿Desea buscar categorías específicas?) then (sí)
-  :Usa filtro o barra de búsqueda
-  para encontrar categorías específicas;
+  :Define criterios de búsqueda o filtro;
   |#whitesmoke|Módulo administrativo|
-  :Actualiza la lista según los criterios de búsqueda;
+  :Ajusta la lista según los criterios;
   |#skyblue|Coordinación|
-  :Visualiza la lista filtrada;
+  :Revisa la lista resultante;
 endif
 stop
 @enduml

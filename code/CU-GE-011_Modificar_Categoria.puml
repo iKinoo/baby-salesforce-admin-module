@@ -1,24 +1,24 @@
-@startuml
+@startuml CU-GE-011_Modificar_Categoria
 title Diagrama de Actividades - Modificar Categoría (CU-GE-011)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a "Gestión de Categorías";
-:Selecciona una categoría de la lista;
-:Elige "Modificar";
+:Inicia gestión de categorías;
+:Indica categoría a modificar;
+:Solicita modificación;
 
 |#whitesmoke|Módulo administrativo|
-:Presenta formulario para editar el nombre;
+:Provee información de la categoría;
 
 |#skyblue|Coordinadora de EC|
-:Edita el nombre y guarda;
+:Actualiza el nombre y confirma;
 
 |#whitesmoke|Módulo administrativo|
-if (Nuevo nombre ya existe?) then (sí)
-   :Muestra error de nombre duplicado;
+if (¿Nuevo nombre ya existe?) then (sí)
+   :Informa nombre duplicado;
 else (no)
-  :Actualiza el nombre de la categoría;
-  :Muestra mensaje de confirmación;
+  :Registra el nuevo nombre de la categoría;
+  :Informa confirmación;
 endif
 stop
 @enduml

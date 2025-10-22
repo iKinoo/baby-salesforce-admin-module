@@ -1,25 +1,24 @@
-@startuml
+@startuml CU-GE-004_Eliminar_Evento
 title Diagrama de Actividades - Eliminar Evento Existente (CU-GE-004)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a "Gestión de Eventos";
-:Selecciona un evento de la lista;
-:Elige la opción "Eliminar";
+:Inicia gestión de eventos;
+:Indica el evento objetivo;
+:Solicita eliminación del evento;
 
 |#whitesmoke|Módulo administrativo|
-:Solicita confirmación para eliminar;
+:Requiere confirmación de eliminación;
 
 |#skyblue|Coordinadora de EC|
-:Confirma la eliminación;
+:Confirma la decisión;
 
 |#whitesmoke|Módulo administrativo|
-if (Evento tiene inscripciones activas?) then (sí)
-   :Muestra error: "No se puede eliminar,
-   el evento tiene participantes";
+if (¿El evento tiene inscripciones activas?) then (sí)
+   :Informa que no es posible eliminar por participantes activos;
 else (no)
-  :Elimina el evento de la BD;
-  :Muestra mensaje de confirmación;
+  :Registra la eliminación del evento;
+  :Informa confirmación de eliminación;
 endif
 stop
 @enduml

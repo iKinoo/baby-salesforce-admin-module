@@ -1,20 +1,20 @@
-@startuml
+@startuml CU-MU-003_Registrar_Capacitador
 title Diagrama de Actividades - Registrar Nuevo Capacitador (CU-MU-003)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a "Gestión de Capacitadores";
-:Selecciona "Registrar Capacitador";
+:Inicia gestión de capacitadores;
+:Solicita registro de capacitador;
 
 |#whitesmoke|Módulo administrativo|
-:Presenta formulario de registro;
+:Solicita datos de registro;
 
 |#skyblue|Coordinadora de EC|
-:Completa información básica y profesional;
-:Guarda el nuevo capacitador;
+:Proporciona información básica y profesional;
+:Confirma registro;
 
 |#whitesmoke|Módulo administrativo|
 :Valida datos y crea el registro;
-:Muestra confirmación;
+:Informa confirmación;
 stop
 @enduml

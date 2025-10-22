@@ -1,35 +1,31 @@
-@startuml
+@startuml CU-MU-006_Archivar_Eliminar_Capacitador
 title Diagrama de Actividades - Archivar/Eliminar Capacitador (CU-MU-006)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede al "Módulo de Usuarios";
-:Selecciona "Gestionar Capacitadores";
-:Selecciona el capacitador que desea
-archivar/eliminar de la lista;
+:Inicia gestión de usuarios;
+:Solicita gestionar capacitadores;
+:Indica el capacitador a archivar/eliminar;
 
 |#whitesmoke|Módulo administrativo|
-:Solicita confirmación a la Coordinadora de EC;
+:Requiere confirmación de la acción;
 
 |#skyblue|Coordinadora de EC|
 if (¿Confirma la acción?) then (sí)
   |#whitesmoke|Módulo administrativo|
   if (¿El capacitador tiene eventos/capacitaciones activas?) then (sí)
-    :Notifica que el capacitador tiene eventos activos;
-    :Sugiere reasignar o archivar primero los eventos;
+    :Informa que el capacitador tiene eventos activos;
+    :Sugiere reasignación o archivado previo de eventos;
     |#skyblue|Coordinadora de EC|
     :Recibe la notificación;
     stop
   else (no)
     if (¿Operación exitosa?) then (sí)
-      :Cambia el estado del capacitador a "Archivado"
-      o lo elimina completamente;
-      :Actualiza eventos donde estaba asignado
-      (campo vacío o "Capacitador archivado");
-      :Muestra mensaje de confirmación;
+      :Registra estado "Archivado" o elimina registro;
+      :Actualiza eventos relacionados;
+      :Informa confirmación;
     else (no)
-      :Muestra error del sistema al intentar
-      archivar/eliminar;
+      :Informa error del sistema al archivar/eliminar;
     endif
   endif
 else (no)

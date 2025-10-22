@@ -1,20 +1,19 @@
-@startuml
+@startuml CU-GE-007B_Rechazar_Inscripciones
 title Diagrama de Actividades - Rechazar Solicitudes de Inscripción (CU-GE-007B)
 
 |#skyblue|Coordinación|
 start
-:Accede a "Gestión de Solicitudes de Inscripción";
+:Inicia gestión de solicitudes de inscripción;
 
 |#whitesmoke|Módulo administrativo|
-:Muestra lista de solicitudes con estado
+:Provee solicitudes con estado
 "Pendiente de Revisión";
 
 |#skyblue|Coordinación|
-:Selecciona una solicitud para revisar;
+:Determina solicitud a revisar;
 
 |#whitesmoke|Módulo administrativo|
-:Muestra detalles de la solicitud
-(datos del usuario, documentos, etc.);
+:Provee información relevante de la solicitud;
 
 |#skyblue|Coordinación|
 :Ejecuta proceso de Validación de Documentos;
@@ -24,40 +23,36 @@ note right: ver CU-GE-008
 :Identifica problemas o incumplimientos;
 if (¿Tipo de problema?) then (Información incompleta/incorrecta)
   |#skyblue|Coordinación|
-  :Decide solicitar más información;
-  :Hace clic en "Solicitar Más Información";
+  :Decide solicitar información adicional;
   |#whitesmoke|Módulo administrativo|
-  :Solicita especificar qué información se requiere;
+  :Requiere especificar qué información se solicita;
   |#skyblue|Coordinación|
-  :Ingresa el detalle de la información requerida
+  :Especifica la información requerida
   (ej. "Falta certificado de estudios",
   "Documento ilegible", etc.);
   |#whitesmoke|Módulo administrativo|
   :Actualiza estado a "Información Requerida";
-  :Envía email de notificación al usuario
-  especificando la información faltante
+  :Notifica al usuario la información faltante
   y cómo proporcionarla;
-  :Muestra confirmación a la Coordinación;
+  :Informa a Coordinación la resolución;
 else (No cumple requisitos)
   |#skyblue|Coordinación|
-  :Decide rechazar definitivamente;
-  :Hace clic en "Rechazar";
+  :Determina rechazo definitivo;
   |#whitesmoke|Módulo administrativo|
-  :Solicita motivo del rechazo;
+  :Requiere motivo del rechazo;
   |#skyblue|Coordinación|
-  :Ingresa motivo específico del rechazo
+  :Registra motivo específico del rechazo
   (ej. "No cumple requisitos académicos",
   "Documentación no válida", etc.);
   |#whitesmoke|Módulo administrativo|
   :Actualiza estado a "Rechazada";
-  :Envía email de notificación al usuario
-  incluyendo el motivo específico del rechazo;
-  :Muestra confirmación a la Coordinación;
+  :Notifica al usuario el motivo del rechazo;
+  :Informa a Coordinación la resolución;
 endif
 
 |#skyblue|Coordinación|
 if (¿Desea procesar otra solicitud?) then (Sí)
-  :Vuelve a la lista de solicitudes pendientes;
+  :Continúa con otra solicitud pendiente;
 else (No)
   stop
 endif

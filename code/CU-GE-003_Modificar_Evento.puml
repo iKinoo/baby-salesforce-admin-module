@@ -1,22 +1,22 @@
-@startuml
+@startuml CU-GE-003_Modificar_Evento
 title Diagrama de Actividades - Modificar Evento Existente (CU-GE-003)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a "Gestión de Eventos";
-:Selecciona un evento de la lista;
-:Elige la opción "Modificar";
+:Inicia gestión de eventos;
+:Indica evento a modificar;
+:Solicita modificación;
 
 |#whitesmoke|Módulo administrativo|
-:Presenta formulario con datos del evento;
+:Provee información actual del evento;
 
 |#skyblue|Coordinadora de EC|
-:Edita la información necesaria;
-:Guarda los cambios;
+:Actualiza la información necesaria;
+:Confirma los cambios;
 
 |#whitesmoke|Módulo administrativo|
-:Valida los datos actualizados;
-:Actualiza el evento en la BD;
-:Muestra mensaje de confirmación;
+:Valida la información;
+:Registra la actualización del evento;
+:Informa confirmación;
 stop
 @enduml

@@ -1,26 +1,26 @@
-@startuml
+@startuml CU-GE-006_Generar_Reportes
 title Diagrama de Actividades - Generación de Reportes (CU-GE-006)
 
 |#skyblue|Coordinación|
 start
-:Accede a la sección "Reportes y Constancias";
-:Selecciona "Generar Reporte de Eventos";
+:Inicia proceso de constancias y reportes;
+:Solicita generación de reporte de eventos;
 
 |#whitesmoke|Módulo administrativo|
-:Presenta lista de reportes disponibles
+:Indica reportes disponibles
 (ej. Lista de participantes, Ingresos);
 
 |#skyblue|Coordinación|
-:Selecciona un tipo de reporte;
-:Define los parámetros (ej. evento, fechas);
-:Inicia la generación del reporte;
+:Define tipo de reporte y parámetros
+(ej. evento, fechas);
+:Confirma generación del reporte;
 
 |#whitesmoke|Módulo administrativo|
-:Procesa la información de la BD;
-:Genera el archivo del reporte (PDF, Excel);
-:Ofrece opción para descargar el archivo;
+:Procesa la información requerida;
+:Genera el reporte (PDF, Excel);
+:Habilita opción para distribución (descarga);
 
 |#skyblue|Coordinación|
-:Descarga el reporte;
+:Accede al reporte generado;
 stop
 @enduml

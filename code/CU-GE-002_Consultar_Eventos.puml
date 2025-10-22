@@ -1,34 +1,32 @@
-@startuml
+@startuml CU-GE-002_Consultar_Eventos
 title Diagrama de Actividades - Consultar Eventos (CU-GE-002)
 
 |#skyblue|Coordinación|
 start
-:Accede a "Gestión de Eventos";
-:Selecciona "Consultar eventos" o "Ver eventos";
+:Inicia gestión de eventos;
+:Solicita consulta de eventos;
 
 |#whitesmoke|Módulo administrativo|
 if (¿Hay eventos registrados?) then (sí)
-  :Muestra una lista paginada de todos los eventos
+  :Provee listado de eventos
   (nombre, fechas, estado, modalidad);
 else (no)
-  :Muestra mensaje "No hay eventos registrados";
+  :Informa ausencia de eventos registrados;
   stop
 endif
 
 |#skyblue|Coordinación|
-:Visualiza la lista de eventos;
+:Analiza la lista de eventos;
 if (¿Desea refinar la búsqueda?) then (sí)
-  :Aplica filtros (por fecha, modalidad, estado)
-  o usa la barra de búsqueda (nombre del evento);
+  :Define criterios de filtrado/búsqueda;
   |#whitesmoke|Módulo administrativo|
   if (¿Se encontraron resultados?) then (sí)
-    :Actualiza la lista según los criterios;
+    :Ajusta el listado según criterios;
   else (no)
-    :Muestra mensaje "No se encontraron resultados
-    para la búsqueda/filtro aplicado";
+    :Informa que no hay resultados para los criterios;
   endif
   |#skyblue|Coordinación|
-  :Visualiza la lista filtrada;
+  :Revisa la lista resultante;
 endif
 stop
 @enduml

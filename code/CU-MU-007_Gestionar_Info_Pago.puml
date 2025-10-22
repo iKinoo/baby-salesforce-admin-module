@@ -1,36 +1,33 @@
-@startuml
+@startuml CU-MU-007_Gestionar_Info_Pago
 title Diagrama de Actividades - Gestionar Información de Pago/Facturación (CU-MU-007)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a "Gestión de Capacitadores";
-:Selecciona un capacitador;
-:Elige "Gestionar Información de Pago";
+:Inicia gestión de capacitadores;
+:Indica capacitador objetivo;
+:Solicita gestionar información de pago;
 
 |#whitesmoke|Módulo administrativo|
-:Muestra formulario de datos financieros;
+:Solicita datos financieros/fiscales;
 
 |#skyblue|Coordinadora de EC|
-:Ingresa o actualiza los datos bancarios/fiscales;
-:Guarda la información;
+:Proporciona o actualiza datos bancarios/fiscales;
+:Confirma registro;
 
 |#whitesmoke|Módulo administrativo|
 :Guarda los datos con estado
 "Pendiente de Validación por Capacitador";
-:Envía notificación al Capacitador;
+:Notifica al Capacitador;
 
 |#lightgreen|Capacitador|
-:Recibe notificación por correo;
-:Inicia sesión y accede a su perfil;
 :Revisa los datos de pago registrados;
 if (¿Los datos son correctos?) then (sí)
-  :Selecciona "Validar y Confirmar";
+  :Valida y confirma los datos;
   |#whitesmoke|Módulo administrativo|
   :Cambia estado a "Validada por Capacitador";
   :Notifica a Coordinación;
 else (no)
-  :Selecciona "Solicitar Corrección";
-  :Describe el error o la corrección necesaria;
+  :Solicita corrección y describe ajustes requeridos;
   |#whitesmoke|Módulo administrativo|
   :Cambia estado a "Corrección Solicitada";
   :Notifica a Coordinación para que revise;

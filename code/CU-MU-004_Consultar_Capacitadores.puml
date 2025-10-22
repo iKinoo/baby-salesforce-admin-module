@@ -1,31 +1,30 @@
-@startuml
+@startuml CU-MU-004_Consultar_Capacitadores
 title Diagrama de Actividades - Consultar Capacitadores (CU-MU-004)
 
 |#skyblue|Coordinación|
 start
-:Accede al "Módulo de Usuarios";
-:Selecciona "Consultar Capacitadores" 
-o "Ver lista de Capacitadores";
+:Inicia gestión de usuarios;
+:Solicita consulta de capacitadores;
 
 |#whitesmoke|Módulo administrativo|
 if (¿Hay capacitadores registrados?) then (sí)
-  :Muestra una lista de todos los capacitadores
-  registrados con información clave
+  :Provee listado de capacitadores
+  con información clave
   (nombre, especialidad, estado);
 else (no)
-  :Muestra mensaje "No hay capacitadores registrados";
+  :Informa que no hay capacitadores registrados;
   stop
 endif
 
 |#skyblue|Coordinación|
-:Visualiza la lista de capacitadores;
+:Analiza la lista;
 if (¿Desea refinar la búsqueda?) then (sí)
-  :Aplica opciones de búsqueda o filtro
+  :Define criterios de búsqueda o filtro
   (por nombre, especialidad, estado);
   |#whitesmoke|Módulo administrativo|
-  :Actualiza la lista según los criterios aplicados;
+  :Ajusta la lista según criterios;
   |#skyblue|Coordinación|
-  :Visualiza la lista filtrada;
+  :Revisa la lista resultante;
 endif
 stop
 @enduml

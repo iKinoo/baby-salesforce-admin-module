@@ -1,26 +1,26 @@
-@startuml
+@startuml CU-GE-001_Crear_Evento
 title Diagrama de Actividades - Crear Nuevo Evento (CU-GE-001)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a "Gestión de Eventos";
-:Selecciona "Crear Evento";
+:Inicia gestión de eventos;
+:Solicita creación de evento;
 
 |#whitesmoke|Módulo administrativo|
-:Presenta formulario de evento vacío;
+:Solicita datos del evento;
 
 |#skyblue|Coordinadora de EC|
-:Ingresa los detalles del evento
+:Registra los detalles del evento
 (nombre, fechas, cupo, etc.);
-:Guarda el evento;
+:Confirma registro del evento;
 
 |#whitesmoke|Módulo administrativo|
 :Valida los datos (ej. fechas válidas);
 if (Datos son válidos?) then (sí)
-  :Crea el nuevo evento en la BD;
-  :Muestra mensaje de confirmación;
+  :Registra el nuevo evento;
+  :Informa confirmación;
 else (no)
-  :Muestra error y resalta campos inválidos;
+  :Informa inconsistencias en los datos;
 endif
 stop
 @enduml

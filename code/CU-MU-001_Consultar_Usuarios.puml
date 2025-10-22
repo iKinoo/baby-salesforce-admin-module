@@ -1,27 +1,26 @@
-@startuml
+@startuml CU-MU-001_Consultar_Usuarios
 title Diagrama de Actividades - Consultar Usuarios (CU-MU-001)
 
 |#skyblue|Coordinación|
 start
-:Accede al "Módulo de Usuarios";
+:Inicia gestión de usuarios;
 
 |#whitesmoke|Módulo administrativo|
-:Muestra una lista paginada de todos los usuarios
+:Provee listado de usuarios
 (Público General, Capacitadores, etc.);
 
 |#skyblue|Coordinación|
-:Visualiza la lista;
-if (Desea refinar la búsqueda?) then (sí)
-  :Aplica filtros (por rol, estado)
-  o usa la barra de búsqueda (nombre, email);
+:Analiza la lista;
+if (¿Desea refinar la búsqueda?) then (sí)
+  :Define criterios (rol, estado, nombre, email);
   |#whitesmoke|Módulo administrativo|
-  :Actualiza la lista según los criterios;
+  :Ajusta el listado según criterios;
   |#skyblue|Coordinación|
-  :Visualiza la lista filtrada;
+  :Revisa la lista resultante;
 endif
-:Selecciona un usuario para ver su perfil detallado;
+:Determina un usuario para revisar;
 |#whitesmoke|Módulo administrativo|
-:Muestra el perfil del usuario seleccionado;
+:Provee información de perfil del usuario;
 |#skyblue|Coordinación|
 stop
 @enduml

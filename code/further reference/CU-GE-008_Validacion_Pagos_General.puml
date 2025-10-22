@@ -1,17 +1,17 @@
-@startuml
+@startuml CU-GE-008_Validacion_Pagos_General
 title Diagrama de Actividades - Delegación de Validación de Pagos (CU-GE-008)
 
 |#skyblue|Coordinadora de EC|
 start
-:Accede a la sección de "Validaciones";
-:Selecciona "Validar Pagos Manuales";
+:Inicia proceso de validaciones;
+:Solicita validar pagos manuales;
 
 |#whitesmoke|Módulo administrativo|
-:Muestra lista de inscripciones con estado
+:Provee inscripciones con estado
 "Pendiente de Verificación de Pago";
 
 |#skyblue|Coordinadora de EC|
-:Selecciona una inscripción;
+:Determina una inscripción;
 :Delega la validación del pago a Contabilidad;
 
 |#lightgreen|Contabilidad|
@@ -20,20 +20,19 @@ partition "Proceso de Validación de Pago" {
     :Realiza la verificación del pago
     (ver diagrama A6.2 para más detalles);
     if (¿El pago se confirma?) then (Sí)
-        :Confirma el pago en el sistema;
+        :Registra pago confirmado;
     else (No)
-        :Rechaza el pago en el sistema
-        indicando el motivo;
+        :Registra pago rechazado indicando motivo;
     endif
 }
 
 |#whitesmoke|Módulo administrativo|
 if (¿Resultado de la validación?) then (Confirmado)
     :Actualiza estado de la inscripción a "Pagada";
-    :Envía email de confirmación de inscripción al participante;
+    :Notifica al participante la confirmación;
 else (Rechazado)
     :Actualiza estado de la inscripción a "Pago Rechazado";
-    :Notifica al participante sobre el problema y el motivo;
+    :Notifica al participante el motivo del rechazo;
 endif
 
 stop

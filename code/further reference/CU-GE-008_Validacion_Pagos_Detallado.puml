@@ -1,4 +1,4 @@
-@startuml
+@startuml CU-GE-008_Validacion_Pagos_Detallado
 title Diagrama de Actividades - Proceso Detallado de Validación de Pagos (CU-GE-008)
 
 |#lightgreen|Contabilidad|
@@ -17,47 +17,36 @@ note right
 end note
 
 if (¿Método de pago?) then (Depósito bancario)
-  :Verifica comprobante de depósito en PDF
-  recibido en correo@institucion.mx;
+  :Verifica comprobante de depósito recibido;
 elseif (Transferencia electrónica) then 
-  :Valida comprobante en PDF recibido
-  en correo@institucion.mx y
-  confirma en plataforma bancaria;
+  :Valida comprobante recibido y confirma en sistema bancario;
 elseif (Efectivo en caja) then
-  :Confirma recibo físico y monto <$2,000;
+  :Confirma recibo físico y monto permitido;
 elseif (Tarjeta crédito/débito) then
-  :Verifica transacción Visa/MasterCard;
+  :Verifica transacción con la entidad correspondiente;
 elseif (Tarjeta MSI) then
-  :Confirma pago ≥$3,000 y Visa/MasterCard;
+  :Confirma condiciones y aprobación de la transacción;
 else (Pago mediante enlace)
   |#orange|Equipo de ventas|
-  :Solicita enlace de pago;
+  :Solicita generación de enlace de pago;
   |#whitesmoke|Módulo administrativo|
-  :Registra solicitud de enlace;
-  :Deriva al Departamento de Tecnologías;
+  :Registra solicitud y deriva a Tecnologías;
   |#pink|Dpto. Tecnologías|
   :Genera enlace de pago;
   |#whitesmoke|Módulo administrativo|
-  :Recibe enlace generado;
-  :Notifica al Equipo de ventas;
+  :Recibe enlace y notifica al Equipo de ventas;
   |#orange|Equipo de ventas|
-  :Recibe enlace en ≤1 día hábil;
   :Remite enlace al participante;
   |#whitesmoke|Módulo administrativo|
-  :Registra envío de enlace;
+  :Registra envío del enlace;
   |#lightgreen|Contabilidad|
-  :Verifica pago completado
-  mediante enlace;
+  ' Eliminado paso redundante de verificación posterior a la condición
 endif
 
 if (¿El pago se confirma?) then (Sí)
-  :Hace clic en "Confirmar Pago";
+  :Registra confirmación del pago;
 else (No)
-  :Hace clic en "Rechazar Pago";
-  |#whitesmoke|Módulo administrativo|
-  :Solicita un motivo (ej. monto incorrecto);
-  |#lightgreen|Contabilidad|
-  :Ingresa el motivo;
+  :Registra rechazo e indica motivo;
 endif
 
 stop
