@@ -3,22 +3,33 @@ title Diagrama de Actividades - Crear Nueva Categoría (CU-GE-009)
 
 |#skyblue|Coordinadora de EC|
 start
-:Inicia gestión de categorías;
-:Solicita creación de categoría;
+:Inicia creación de categoría;
+:Proporciona datos de la categoría;
+if (¿Cancelar?) then (Sí)
+  stop
+endif
 
 |#whitesmoke|Módulo administrativo|
-:Solicita nombre de la nueva categoría;
+:Valida obligatoriedad y unicidad;
+if (¿Datos válidos y nombre disponible?) then (Sí)
+  :Registra categoría;
+  :Confirma creación;
+  stop
+else (No)
+  :Informa errores de validación / duplicado;
+endif
 
 |#skyblue|Coordinadora de EC|
-:Proporciona nombre;
-:Confirma registro de la categoría;
+:Corrige datos de la categoría;
 
 |#whitesmoke|Módulo administrativo|
-if (¿Nombre ya existe?) then (sí)
-  :Informa que el nombre está duplicado;
-else (no)
-  :Registra la nueva categoría;
-  :Informa confirmación;
+:Valida obligatoriedad y unicidad;
+if (¿Datos válidos y nombre disponible?) then (Sí)
+  :Registra categoría;
+  :Confirma creación;
+else (No)
+  :Informa errores de validación / duplicado;
 endif
+
 stop
 @enduml
