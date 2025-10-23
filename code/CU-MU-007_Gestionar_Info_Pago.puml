@@ -1,36 +1,38 @@
-@startuml CU-MU-007_Gestionar_Info_Pago
+@startuml
 title Diagrama de Actividades - Gestionar Información de Pago/Facturación (CU-MU-007)
 
 |#skyblue|Coordinadora de EC|
 start
 :Inicia gestión de capacitadores;
 :Indica capacitador objetivo;
-:Solicita gestionar información de pago;
 
-|#whitesmoke|Módulo administrativo|
-:Solicita datos financieros/fiscales;
+repeat
+    :Proporciona o actualiza datos bancarios/fiscales;
+    :Confirma registro;
+
+    |#whitesmoke|Módulo administrativo|
+    :Guarda los datos con estado "Pendiente de Validación";
+    :Notifica al Capacitador;
+
+    |#lightgreen|Capacitador|
+    :Revisa los datos de pago registrados;
+    if (¿Los datos son correctos?) then (sí)
+        :Valida y confirma los datos;
+        |#whitesmoke|Módulo administrativo|
+        :Cambia estado a "Validada por Capacitador";
+        :Notifica a Coordinación;
+        break
+    else (no)
+        :Describe los ajustes requeridos y solicita corrección;
+        |#whitesmoke|Módulo administrativo|
+        :Cambia estado a "Corrección Solicitada";
+        :Notifica a Coordinación sobre la solicitud de revisión;
+        |#skyblue|Coordinadora de EC|
+        :Recibe la solicitud de corrección;
+    endif
+repeat while (Se requieren más ajustes?) is (sí)
 
 |#skyblue|Coordinadora de EC|
-:Proporciona o actualiza datos bancarios/fiscales;
-:Confirma registro;
-
-|#whitesmoke|Módulo administrativo|
-:Guarda los datos con estado
-"Pendiente de Validación por Capacitador";
-:Notifica al Capacitador;
-
-|#lightgreen|Capacitador|
-:Revisa los datos de pago registrados;
-if (¿Los datos son correctos?) then (sí)
-  :Valida y confirma los datos;
-  |#whitesmoke|Módulo administrativo|
-  :Cambia estado a "Validada por Capacitador";
-  :Notifica a Coordinación;
-else (no)
-  :Solicita corrección y describe ajustes requeridos;
-  |#whitesmoke|Módulo administrativo|
-  :Cambia estado a "Corrección Solicitada";
-  :Notifica a Coordinación para que revise;
-endif
+:Recibe notificación de validación final;
 stop
 @enduml
