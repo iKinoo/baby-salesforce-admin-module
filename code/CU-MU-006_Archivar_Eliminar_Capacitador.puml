@@ -1,35 +1,48 @@
-@startuml CU-MU-006_Archivar_Eliminar_Capacitador
+@startuml
 title Diagrama de Actividades - Archivar/Eliminar Capacitador (CU-MU-006)
 
 |#skyblue|Coordinadora de EC|
 start
 :Inicia gestión de usuarios;
 :Solicita gestionar capacitadores;
-:Indica el capacitador a archivar/eliminar;
+:Indica el capacitador y la acción (archivar o eliminar);
 
 |#whitesmoke|Módulo administrativo|
-:Requiere confirmación de la acción;
+if (Acción es Archivar?) then (Archivar)
+    :Requiere confirmación para archivar;
+    |#skyblue|Coordinadora de EC|
+    if (¿Confirma la acción?) then (sí)
+        |#whitesmoke|Módulo administrativo|
+        :Registra estado como "Archivado";
+        :Actualiza eventos pasados;
+        :Prepara notificación de éxito;
+    else (no)
+        |#whitesmoke|Módulo administrativo|
+        :Cancela la operación;
+        :Prepara notificación de cancelación;
+    endif
+else (Eliminar)
+    :Requiere confirmación para eliminar;
+    |#skyblue|Coordinadora de EC|
+    if (¿Confirma la acción?) then (sí)
+        |#whitesmoke|Módulo administrativo|
+        if (¿El capacitador tiene eventos activos?) then (sí)
+            :Prepara notificación de error (eventos activos);
+        else (no)
+            :Elimina el registro del capacitador;
+            :Prepara notificación de éxito;
+        endif
+    else (no)
+        |#whitesmoke|Módulo administrativo|
+        :Cancela la operación;
+        :Prepara notificación de cancelación;
+    endif
+endif
+
+|#whitesmoke|Módulo administrativo|
+:Envía la notificación resultante;
 
 |#skyblue|Coordinadora de EC|
-if (¿Confirma la acción?) then (sí)
-  |#whitesmoke|Módulo administrativo|
-  if (¿El capacitador tiene eventos/capacitaciones activas?) then (sí)
-    :Informa que el capacitador tiene eventos activos;
-    :Sugiere reasignación o archivado previo de eventos;
-    |#skyblue|Coordinadora de EC|
-    :Recibe la notificación;
-    stop
-  else (no)
-    if (¿Operación exitosa?) then (sí)
-      :Registra estado "Archivado" o elimina registro;
-      :Actualiza eventos relacionados;
-      :Informa confirmación;
-    else (no)
-      :Informa error del sistema al archivar/eliminar;
-    endif
-  endif
-else (no)
-  :Cancela la operación;
-endif
+:Recibe la notificación final;
 stop
 @enduml
