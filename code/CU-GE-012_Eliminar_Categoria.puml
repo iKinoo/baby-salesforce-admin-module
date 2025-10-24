@@ -3,9 +3,9 @@ title Diagrama de Actividades - Eliminar Categoría (CU-GE-012)
 
 |#skyblue|Coordinadora de EC|
 start
-:Inicia gestión de categorías;
-:Indica categoría objetivo;
-:Solicita eliminación;
+:Accede a "Gestión de categorías";
+:Selecciona una categoría de la lista;
+:Elige la opción "Eliminar";
 
 |#whitesmoke|Módulo administrativo|
 :Requiere confirmación;
